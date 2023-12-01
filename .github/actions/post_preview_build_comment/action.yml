@@ -4,6 +4,9 @@ inputs:
   issue_number:
     description: "PR number"
     required: true
+  head_sha:
+    description: "SHA of the commit"
+    required: true
 outputs:
   check_run_id:
     description: "Id of the created check"
@@ -44,7 +47,7 @@ runs:
           const check = await github.rest.checks.create({
               ...context.repo,
               name: "Generate preview link",
-              head_sha: github.sha,
+              head_sha: ${{ inputs.head_sha }},
               details_url: action_url,
               status: "in_progress",
               output: {
