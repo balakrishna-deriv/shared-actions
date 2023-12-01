@@ -73,7 +73,7 @@ runs:
             ...context.repo,
             name: "Generate preview link",
             check_run_id: "${{ inputs.check_run_id }}"
-            head_sha: ${{ inputs.head_sha }},
+            head_sha: "${{ inputs.head_sha }}",
             details_url,
             status: "completed",
             conclusion,

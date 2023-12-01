@@ -47,7 +47,7 @@ runs:
           const check = await github.rest.checks.create({
               ...context.repo,
               name: "Generate preview link",
-              head_sha: ${{ inputs.head_sha }},
+              head_sha: "${{ inputs.head_sha }}",
               details_url: action_url,
               status: "in_progress",
               output: {
