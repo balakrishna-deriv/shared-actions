@@ -66,13 +66,13 @@ runs:
       with:
         github-token: ${{ github.token }}
         script: |
-          const conclusion = "${{ inputs.status }}";
-          const details_url = "${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}"
+          const conclusion = "${{ inputs.status }}"
+          const action_url = "${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}"
           await github.rest.checks.update({
             ...context.repo,
             name: "Generate preview link",
-            check_run_id: "${{ inputs.check_run_id }}"
-            details_url,
+            check_run_id: "${{ inputs.check_run_id }}",
+            details_url: action_url,
             status: "completed",
             conclusion,
             output: {
