@@ -1,5 +1,5 @@
-name: post_action_build_comment
-description: post action build comment
+name: post_preview_build_comment
+description: Post preview build comment
 inputs:
   issue_number:
     description: "PR number"
@@ -14,8 +14,8 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: "Create action link comment"
-      id: create_build_comment
+    - name: "Post build comment"
+      id: post_build_comment
       uses: actions/github-script@v3
       with:
         github-token: ${{ github.token }}
@@ -29,7 +29,7 @@ runs:
               ''
             ].join('\n')
           core.setOutput("comment", comment);
-    - name: Post Cloudflare Pages Preview comment
+    - name: "Post Cloudflare Pages Preview comment"
       uses: marocchino/sticky-pull-request-comment@v2
       with:
         header: Cloudflare Pages Preview Comment
@@ -52,7 +52,7 @@ runs:
               status: "in_progress",
               output: {
                 title: "Generate preview link",
-                summary: "Preview link creation is in progress",
+                summary: `Preview link creation is in progress. Build URL: - ${action_url}`,
               },
           });
           core.setOutput("check_run_id", check.data.id);
