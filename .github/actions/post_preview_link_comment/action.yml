@@ -57,7 +57,7 @@ runs:
       with:
         header: Cloudflare Pages Preview Comment
         number: ${{ inputs.issue_number }}
-        message: ${{steps.create_preview_comment.outputs.comment || steps.create_failure_comment.outputs.comment }}
+        message: ${{steps.post_preview_comment.outputs.comment || steps.post_failure_comment.outputs.comment }}
         recreate: true
 
     - name: "Update the build check"
