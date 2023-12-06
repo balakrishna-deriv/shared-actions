@@ -10,9 +10,6 @@ inputs:
   check_run_id:
     description: "Id of the created check"
     required: true
-  head_sha:
-    description: "SHA of the commit"
-    required: true
 runs:
   using: composite
   steps:
@@ -74,7 +71,6 @@ runs:
             ...context.repo,
             name: "Generate preview link",
             check_run_id: "${{ inputs.check_run_id }}"
-            head_sha: "${{ inputs.head_sha }}",
             details_url,
             status: "completed",
             conclusion,
